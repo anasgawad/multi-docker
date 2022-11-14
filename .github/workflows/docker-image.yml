@@ -15,21 +15,21 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build ./client --file ./client/Dockerfile.dev --tag anasgawad/react-test:latest
+      run: docker build ./client --file ./client/Dockerfile.dev --tag anasawad/react-test:latest
     - name: Run Tests
-      run: docker run -e CI=true anasgawad/react-test:latest npm test
+      run: docker run -e CI=true anasawad/react-test:latest npm test
 
     - name: Build the client
-      run: docker build -t anasgawad/multi-client ./client
+      run: docker build -t anasawad/multi-client ./client
 
     - name: Build the nginx
-      run: docker build -t anasgawad/multi-nginx ./nginx
+      run: docker build -t anasawad/multi-nginx ./nginx
 
     - name: Build the server
-      run: docker build -t anasgawad/multi-server ./server
+      run: docker build -t anasawad/multi-server ./server
 
     - name: Build the worker
-      run: docker build -t anasgawad/multi-worker ./worker
+      run: docker build -t anasawad/multi-worker ./worker
 
     - name: Log in to Docker Hub
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -41,16 +41,16 @@ jobs:
     #   run: echo ${{ DOCKER_PASSWORD }} | docker login -u ${{ DOCKER_ID }} --password-stdin
 
     - name: Push multi-client image to docker hub
-      run: docker push anasgawad/multi-client
+      run: docker push anasawad/multi-client
 
     - name: Push multi-nginx image to docker hub  
-      run: docker push anasgawad/multi-nginx
+      run: docker push anasawad/multi-nginx
 
     - name: Push multi-server image to docker hub
-      run: docker push anasgawad/multi-server
+      run: docker push anasawad/multi-server
 
     - name: Push multi-worker image to docker hub
-      run: docker push anasgawad/multi-worker
+      run: docker push anasawad/multi-worker
 
     # - name: Generate deployment package
     #   run: zip -r deploy.zip . -x '*.git*'
