@@ -15,21 +15,21 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build ./client --file ./client/Dockerfile.dev --tag anasawad/react-test:latest
+      run: docker build ./client --file ./client/Dockerfile.dev --tag anasgawad/react-test:latest
     - name: Run Tests
-      run: docker run -e CI=true anasawad/react-test:latest npm test
+      run: docker run -e CI=true anasgawad/react-test:latest npm test
 
     - name: Build the client
-      run: docker build -t anasawad/multi-client ./client
+      run: docker build -t anasgawad/multi-client ./client
 
     - name: Build the nginx
-      run: docker build -t anasawad/multi-nginx ./nginx
+      run: docker build -t anasgawad/multi-nginx ./nginx
 
     - name: Build the server
-      run: docker build -t anasawad/multi-server ./server
+      run: docker build -t anasgawad/multi-server ./server
 
     - name: Build the worker
-      run: docker build -t anasawad/multi-worker ./worker
+      run: docker build -t anasgawad/multi-worker ./worker
 
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
