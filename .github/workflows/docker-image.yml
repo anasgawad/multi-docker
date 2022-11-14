@@ -31,17 +31,29 @@ jobs:
     - name: Build the worker
       run: docker build -t anasgawad/multi-worker ./worker
 
-    - name: Generate deployment package
-      run: zip -r deploy.zip . -x '*.git*'
+    - name: Push multi-client image to docker hub
+      run: docker push anasgawad/multi-client
 
-    - name: Deploy to EB
-      uses: einaregilsson/beanstalk-deploy@v18
-      with:
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-        application_name: docker-gh
-        environment_name: Dockergh-env
-        existing_bucket_name: elasticbeanstalk-us-east-1-234924583064
-        region: us-east-1
-        version_label: ${{ github.sha }}
-        deployment_package: deploy.zip
+    - name: Push multi-nginx image to docker hub  
+      run: docker push anasgawad/multi-nginx
+
+    - name: Push multi-server image to docker hub
+      run: docker push anasgawad/multi-server
+
+    - name: Push multi-worker image to docker hub
+      run: docker push anasgawad/multi-worker
+
+    # - name: Generate deployment package
+    #   run: zip -r deploy.zip . -x '*.git*'
+
+    # - name: Deploy to EB
+    #   uses: einaregilsson/beanstalk-deploy@v18
+    #   with:
+    #     aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+    #     aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+    #     application_name: docker-gh
+    #     environment_name: Dockergh-env
+    #     existing_bucket_name: elasticbeanstalk-us-east-1-234924583064
+    #     region: us-east-1
+    #     version_label: ${{ github.sha }}
+    #     deployment_package: deploy.zip
