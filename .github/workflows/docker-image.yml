@@ -32,8 +32,8 @@ jobs:
       run: docker build -t anasgawad/multi-worker ./worker
 
     - name: log in to docker hub
-      run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-      
+      run: echo ${{ DOCKER_PASSWORD }} | docker login -u ${{ DOCKER_ID }} --password-stdin
+
     - name: Push multi-client image to docker hub
       run: docker push anasgawad/multi-client
 
